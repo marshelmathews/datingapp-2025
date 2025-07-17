@@ -17,9 +17,18 @@ public class UserController(AppDbContext context) : ControllerBase
         var users = await context.Users.ToListAsync();
         return users;
     }
-    
+
     [HttpGet("{id}")]
-    public async Task<ActionResult<AppUser>> GetMember(string id){
+    public async Task<ActionResult<AppUser>> GetMember(string id)
+    {
+        var member = await context.Users.FindAsync(id);
+        if (member == null) return BadRequest();
+        else return member;
+
+    }
+    
+    [HttpGet("{id1/id2}")]
+    public async Task<ActionResult<AppUser>> GetMemberTest(string id){
         var member = await context.Users.FindAsync(id);
         if(member == null) return BadRequest();
         else return member;
