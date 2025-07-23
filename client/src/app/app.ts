@@ -10,7 +10,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 export class App implements OnInit{
   protected readonly title = 'client';
   private http = inject(HttpClient);
-
+  private reslove : any;
     ngOnInit(): void {
     this.http.get("https://localhost:5001/api/User").subscribe({
       next : response => console.log(response),
